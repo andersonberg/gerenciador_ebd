@@ -1,0 +1,5 @@
+[run]
+include = gerenciador_de_ebd/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin
