@@ -38,6 +38,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'escola',
 
     # Useful template tags:
     # 'django.contrib.humanize',
