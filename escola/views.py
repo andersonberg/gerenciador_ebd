@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from escola.models import Classe, Componente
-from escola.serializers import ClasseSerializer, ComponenteSerializer
+from escola.models import Classe, Componente, Departamento
+from escola.serializers import ClasseSerializer, ComponenteSerializer, DepartamentoSerializer
 
 
 class ClasseList(generics.ListAPIView):
@@ -58,3 +58,31 @@ class ComponenteCreate(generics.CreateAPIView):
 
     queryset = Componente.objects.all()
     serializer_class = ComponenteSerializer
+
+
+class DepartamentoList(generics.ListAPIView):
+    """
+    List all departamentos in EBD.
+    """
+
+    queryset = Departamento.objects.all()
+    serializer_class = DepartamentoSerializer
+    paginate_by = 10
+
+
+class DepartamentoView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Departamento view.
+    """
+
+    queryset = Departamento.objects.all()
+    serializer_class = DepartamentoSerializer
+
+
+class DepartamentoCreate(generics.CreateAPIView):
+    """
+    Departamento view for create endpoint.
+    """
+
+    queryset = Departamento.objects.all()
+    serializer_class = DepartamentoSerializer

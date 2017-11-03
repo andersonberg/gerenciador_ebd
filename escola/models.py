@@ -10,10 +10,21 @@ class Classe(models.Model):
     Definição da Classe da ebd
     '''
     numero = models.CharField(max_length=50, blank=False)
-    tipo = models.CharField(max_length=100, blank=False)
+    departamento = models.ForeignKey(to='Departamento')
 
     class Meta:
-        ordering = ('numero', 'tipo',)
+        ordering = ('numero', 'departamento',)
+
+
+class Departamento(models.Model):
+    '''
+    Representa um departamento da escola
+    '''
+    nome = models.CharField(max_length=100)
+    coordenador = models.ForeignKey(to='Componente', blank=True, null=True)
+
+    class Meta:
+        ordering = ('nome')
 
 
 class Componente(models.Model):
@@ -73,3 +84,6 @@ class Componente(models.Model):
     celular = models.CharField(max_length=50, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
     estado_civil = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        ordering = ('nome')

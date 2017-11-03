@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 
 from rest_framework import serializers
-from escola.models import Classe, Componente
+from escola.models import Classe, Componente, Departamento
 
 
 class ClasseSerializer(serializers.ModelSerializer):
@@ -30,3 +30,9 @@ class ComponenteSerializer(serializers.ModelSerializer):
                   'celular',
                   'email',
                   'estado_civil')
+
+
+class DepartamentoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Departamento
+        fields = ('id', 'nome', 'coordenador')
