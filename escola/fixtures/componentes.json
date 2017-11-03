@@ -1,0 +1,46 @@
+[
+    {
+        "fields": {
+            "nome": "Alex Fernandes",
+            "cartao_membro": 123,
+            "tipo": "aluno",
+            "sexo": "masculino",
+            "nascimento": "1995-02-22",
+            "logradouro": "Rua E",
+            "numero_end": 1393,
+            "complemento_end": "",
+            "bairro": "Bairro",
+            "cep": "88132-820",
+            "cidade": "Recife",
+            "uf": "PE",
+            "telefone": "(81) 7422-7324",
+            "celular": "(81) 97422-7324",
+            "email": "alex@exemplo.com",
+            "estado_civil": "solteiro"
+        },
+        "model": "escola.componente",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "nome": "José da Silva",
+            "cartao_membro": 345,
+            "tipo": "coordenador",
+            "sexo": "masculino",
+            "nascimento": "1975-03-01",
+            "logradouro": "Rua A",
+            "numero_end": 560,
+            "complemento_end": "",
+            "bairro": "Bairro",
+            "cep": "88132-230",
+            "cidade": "Recife",
+            "uf": "PE",
+            "telefone": "(81) 5112-8244",
+            "celular": "(81) 99459-7291",
+            "email": "jose@exemplo.com",
+            "estado_civil": "casado"
+        },
+        "model": "escola.componente",
+        "pk": 2
+    }
+]
