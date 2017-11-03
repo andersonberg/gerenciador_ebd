@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from escola.models import Classe
-from escola.serializers import ClasseSerializer
+from escola.models import Classe, Componente
+from escola.serializers import ClasseSerializer, ComponenteSerializer
 
 
 class ClasseList(generics.ListAPIView):
@@ -14,9 +14,9 @@ class ClasseList(generics.ListAPIView):
     paginate_by = 10
 
 
-class ClasseRetrieve(generics.RetrieveAPIView):
+class ClasseView(generics.RetrieveUpdateDestroyAPIView):
     """
-    Recovering a classe of EBD.
+    Classe view for read-write-delete endpoints.
     """
 
     queryset = Classe.objects.all()
@@ -25,26 +25,36 @@ class ClasseRetrieve(generics.RetrieveAPIView):
 
 class ClasseCreate(generics.CreateAPIView):
     """
-    Create a new classe.
+    Classe view for create endpoint.
     """
 
     queryset = Classe.objects.all()
     serializer_class = ClasseSerializer
 
 
-class ClasseUpdate(generics.UpdateAPIView):
+class ComponenteList(generics.ListAPIView):
     """
-    Update a classe.
-    """
-
-    queryset = Classe.objects.all()
-    serializer_class = ClasseSerializer
-
-
-class ClasseDelete(generics.DestroyAPIView):
-    """
-    Delete a classe.
+    List all components in EBD.
     """
 
-    queryset = Classe.objects.all()
-    serializer_class = ClasseSerializer
+    queryset = Componente.objects.all()
+    serializer_class = ComponenteSerializer
+    paginate_by = 10
+
+
+class ComponenteView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Componente view.
+    """
+
+    queryset = Componente.objects.all()
+    serializer_class = ComponenteSerializer
+
+
+class ComponenteCreate(generics.CreateAPIView):
+    """
+    Componente view for create endpoint.
+    """
+
+    queryset = Componente.objects.all()
+    serializer_class = ComponenteSerializer
