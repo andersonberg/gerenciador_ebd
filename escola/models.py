@@ -16,6 +16,14 @@ class Classe(models.Model):
         ordering = ('numero', 'tipo',)
 
 
+class Departamento(models.Model):
+    '''
+    Representa um departamento da escola
+    '''
+    nome = models.CharField(max_length=100)
+    coordenador = models.ForeignKey(to='Componente', blank=True, null=True)
+
+
 class Componente(models.Model):
     '''
     Representa um componente da escola dominical
