@@ -1,0 +1,27 @@
+[
+    {
+        "fields": {
+            "numero": "1",
+            "departamento": 1,
+            "faixa": "adolescentes"
+        },
+        "model": "escola.classe",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "numero": "2",
+            "faixa": "adulto"
+        },
+        "model": "escola.classe",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "numero": "3",
+            "faixa": "juvenis"
+        },
+        "model": "escola.classe",
+        "pk": 3
+    }
+]

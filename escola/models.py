@@ -9,8 +9,26 @@ class Classe(models.Model):
     '''
     Definição da Classe da ebd
     '''
+
+    ADULTO = 'adulto'
+    JOVENS = 'jovens'
+    ADOLESCENTES = 'adolescentes'
+    JUVENIS = 'juvenis'
+    JUNIORES = 'juniores'
+    MATERNAL = 'maternal'
+
+    FAIXA_TYPES = (
+        (ADULTO, _('Adulto')),
+        (JOVENS, _('Jovens')),
+        (ADOLESCENTES, _('13 e 14 anos')),
+        (JUVENIS, _('15 a 17 anos')),
+        (JUNIORES, _('9 e 10 anos')),
+        (MATERNAL, _('3 e 4 anos')),
+    )
+
     numero = models.CharField(max_length=50, blank=False)
-    departamento = models.ForeignKey(to='Departamento')
+    departamento = models.ForeignKey(to='Departamento', blank=True, null=True)
+    faixa = models.CharField(choices=FAIXA_TYPES, max_length=50, default=ADULTO)
 
     class Meta:
         ordering = ('numero', 'departamento',)
@@ -24,7 +42,7 @@ class Departamento(models.Model):
     coordenador = models.ForeignKey(to='Componente', blank=True, null=True)
 
     class Meta:
-        ordering = ('nome')
+        ordering = ('nome',)
 
 
 class Componente(models.Model):
@@ -86,4 +104,4 @@ class Componente(models.Model):
     estado_civil = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        ordering = ('nome')
+        ordering = ('nome',)

@@ -8,13 +8,14 @@ from escola.models import Classe, Componente, Departamento
 class ClasseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Classe
-        fields = ('id', 'numero', 'tipo')
+        fields = ('id', 'numero', 'departamento', 'faixa')
 
 
 class ComponenteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Componente
         fields = ('id',
+                  'nome',
                   'cartao_membro',
                   'tipo',
                   'sexo',
