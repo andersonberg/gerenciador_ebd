@@ -5,10 +5,12 @@ from escola import views
 
 urlpatterns = [
     url(r'^classes/$',views.ClasseList.as_view()),
-    url(r'^classe/(?P<pk>[0-9]+)/$', views.ClasseRetrieve.as_view()),
-    url(r'^classe/create/$', views.ClasseCreate.as_view()),
-    url(r'^classe/update/(?P<pk>[0-9]+)/$', views.ClasseUpdate.as_view()),
-    url(r'^classe/delete/(?P<pk>[0-9]+)/$', views.ClasseDelete.as_view()),
+    url(r'^classes/(?P<pk>[0-9]+)/$', views.ClasseView.as_view()),
+    url(r'^classes/create/$', views.ClasseCreate.as_view()),
+
+    url(r'^componentes/$',views.ComponenteList.as_view()),
+    url(r'^componentes/(?P<pk>[0-9]+)/$', views.ComponenteView.as_view()),
+    url(r'^componentes/create/$', views.ComponenteCreate.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
