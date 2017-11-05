@@ -20,17 +20,42 @@
     <!-- Your stuff: Third-party CSS libraries go here -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/nprogress.css' %}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{% static 'css/daterangepicker.css' %}" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="{% static 'css/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet">
     
     <!-- This file stores project-specific CSS -->
+    <link href="{% static 'css/custom.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
     
     {% endblock %}
 
   </head>
 
-  <body>
+  <body class="{% block body_class %}nav-md {% endblock body_class %}">
+    {% block body %}
+      <div class="container body">
+          <div class="main_container">
+            {% block sidebar %}
+              <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
+                {% include "sidebar.html" %}
+              </div>
+            {% endblock sidebar %}
+            {% if messages %}
+              {% for message in messages %}
+                  <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+            {% block content %}
+              <p>Use this document as a way to quick start any new project.</p>
+            {% endblock content %}
+          </div>
+      </div>
+    {% endblock body %}
 
-    <div class="m-b-1">
+    <!-- <div class="m-b-1">
       <nav class="navbar navbar-expand-md navbar-light bg-light">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -68,21 +93,14 @@
         </div>
       </nav>
 
-    </div>
+    </div> -->
 
-    <div class="container">
+    <!-- <div class="container">
 
-      {% if messages %}
-          {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-          {% endfor %}
-      {% endif %}
+      
 
-      {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
-      {% endblock content %}
-
-    </div> <!-- /container -->
+    </div>  -->
+    <!-- /container -->
 
     {% block modal %}{% endblock modal %}
 
@@ -92,13 +110,16 @@
     {% block javascript %}
       <!-- Required by Bootstrap v4 beta -->
       <script src="{% static 'js/jquery.min.js' %}"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
       <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script> -->
 
+      <script src="{% static 'js/nprogress.js' %}"></script>
+      <!-- bootstrap-progressbar -->
+      <script src="{% static 'js/bootstrap-progressbar.min.js' %}"></script>
       <!-- Your stuff: Third-party javascript libraries go here -->
 
       <!-- place project specific Javascript in this file -->
-      
+      <script src="{% static 'js/custom.min.js' %}"></script>
       <script src="{% static 'js/project.js' %}"></script>
       
 

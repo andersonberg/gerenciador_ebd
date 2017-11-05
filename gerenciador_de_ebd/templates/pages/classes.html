@@ -8,34 +8,36 @@
 
 
 {% block content %}
-<div class="row">
-  <div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="x_panel">
-      <div class="x_title">
-        <h2>Classes</h2>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x_content">
-        <table id="classes-datatable" class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Numero</th>
-              <th>Departamento</th>
-              <th>Faixa</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {% for classe in classes %}
+<div class="right_col" role="main">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Classes</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <table id="classes-datatable" class="table table-striped table-bordered">
+            <thead>
               <tr>
-                <td>{{classe.numero}}</td>
-                <td>{{classe.departamento.nome}}</td>
-                <td>{{classe.get_faixa_display}}</td>
+                <th>Numero</th>
+                <th>Departamento</th>
+                <th>Faixa</th>
               </tr>
-            {% endfor %}
-          </tbody>
+            </thead>
 
-        </table>
+            <tbody>
+              {% for classe in classes %}
+                <tr>
+                  <td>{{classe.numero}}</td>
+                  <td>{{classe.departamento.nome}}</td>
+                  <td>{{classe.get_faixa_display}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -43,8 +45,8 @@
 {% endblock content %}
 
 {% block javascript %}
-  <script src="{% static 'js/jquery.min.js' %}"></script>
+{{ block.super }}
   <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
-  <script src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
   <script src="{% static 'js/classes.js' %}"></script>
 {% endblock javascript %}
