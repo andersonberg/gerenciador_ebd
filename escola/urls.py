@@ -1,20 +1,24 @@
 from django.conf.urls import url
+from django.views.generic import TemplateView
 from rest_framework.urlpatterns import format_suffix_patterns
 from escola import views
 
 
 urlpatterns = [
-    url(r'^classes/$',views.ClasseList.as_view()),
-    url(r'^classes/(?P<pk>[0-9]+)/$', views.ClasseView.as_view()),
-    url(r'^classes/create/$', views.ClasseCreate.as_view()),
+    url(r'^api/classes/$',views.ClasseList.as_view()),
+    url(r'^api/classes/(?P<pk>[0-9]+)/$', views.ClasseView.as_view()),
+    url(r'^api/classes/create/$', views.ClasseCreate.as_view()),
 
-    url(r'^componentes/$',views.ComponenteList.as_view()),
-    url(r'^componentes/(?P<pk>[0-9]+)/$', views.ComponenteView.as_view()),
-    url(r'^componentes/create/$', views.ComponenteCreate.as_view()),
+    url(r'^api/componentes/$',views.ComponenteList.as_view()),
+    url(r'^api/componentes/(?P<pk>[0-9]+)/$', views.ComponenteView.as_view()),
+    url(r'^api/componentes/create/$', views.ComponenteCreate.as_view()),
 
-    url(r'^departamentos/$',views.DepartamentoList.as_view()),
-    url(r'^departamentos/(?P<pk>[0-9]+)/$', views.DepartamentoView.as_view()),
-    url(r'^departamentos/create/$', views.DepartamentoCreate.as_view()),
+    url(r'^api/departamentos/$',views.DepartamentoList.as_view()),
+    url(r'^api/departamentos/(?P<pk>[0-9]+)/$', views.DepartamentoView.as_view()),
+    url(r'^api/departamentos/create/$', views.DepartamentoCreate.as_view()),
+
+    url(r'^classes/$', views.ClasseViewHTML.as_view(), name='classes'),
+    url(r'^departamentos/$', views.DepartamentoViewHTML.as_view(), name='departamentos'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
