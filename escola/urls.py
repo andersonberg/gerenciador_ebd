@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^api/departamentos/create/$', views.DepartamentoCreate.as_view()),
 
     url(r'^classes/$', views.ClasseViewHTML.as_view(), name='classes'),
+    url(r'^departamentos/$', views.DepartamentoViewHTML.as_view(), name='departamentos'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -98,3 +98,13 @@ class DepartamentoCreate(generics.CreateAPIView):
 
     queryset = Departamento.objects.all()
     serializer_class = DepartamentoSerializer
+
+
+class DepartamentoViewHTML(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'pages/departamentos.html'
+
+    def get(self, request):
+        queryset = Departamento.objects.all()
+        return Response({'departamentos': queryset})
+
