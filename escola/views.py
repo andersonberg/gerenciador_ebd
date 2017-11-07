@@ -74,11 +74,20 @@ class ComponenteCreate(generics.CreateAPIView):
 
 class ProfessorViewHTML(APIView):
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'pages/professores.html'
+    template_name = 'pages/componentes.html'
 
     def get(self, request):
         queryset = Componente.objects.filter(tipo__in=[Componente.PROFESSOR, Componente.ADJUNTO])
-        return Response({'professores': queryset})
+        return Response({'title': 'Professores', 'componentes': queryset})
+
+
+class AlunoViewHTML(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'pages/componentes.html'
+
+    def get(self, request):
+        queryset = Componente.objects.filter(tipo__in=[Componente.ALUNO, Componente.SECRETARIOLOCAL])
+        return Response({'title': 'Alunos', 'componentes': queryset})
 
 
 class DepartamentoList(generics.ListAPIView):
