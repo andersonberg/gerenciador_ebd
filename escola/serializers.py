@@ -16,6 +16,7 @@ class ComponenteSerializer(serializers.ModelSerializer):
         model = Componente
         fields = ('id',
                   'nome',
+                  'classe',
                   'cartao_membro',
                   'tipo',
                   'sexo',

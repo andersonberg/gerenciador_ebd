@@ -72,6 +72,15 @@ class ComponenteCreate(generics.CreateAPIView):
     serializer_class = ComponenteSerializer
 
 
+class ProfessorViewHTML(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'pages/professores.html'
+
+    def get(self, request):
+        queryset = Componente.objects.filter(tipo__in=[Componente.PROFESSOR, Componente.ADJUNTO])
+        return Response({'professores': queryset})
+
+
 class DepartamentoList(generics.ListAPIView):
     """
     List all departamentos in EBD.
