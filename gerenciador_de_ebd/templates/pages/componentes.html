@@ -13,7 +13,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2>Professores</h2>
+          <h2>{{ title }}</h2>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -27,11 +27,11 @@
             </thead>
 
             <tbody>
-              {% for professor in professores %}
+              {% for componente in componentes %}
                 <tr>
-                  <td>{{professor.nome}}</td>
-                  <td>{{professor.classe.numero}}</td>
-                  <td>{{professor.get_tipo_display}}</td>
+                  <td>{{componente.nome}}</td>
+                  <td>{{componente.classe.numero}}</td>
+                  <td>{{componente.get_tipo_display}}</td>
                 </tr>
               {% endfor %}
             </tbody>
@@ -48,5 +48,5 @@
 {{ block.super }}
   <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
   <script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
-  <script src="{% static 'js/professores.js' %}"></script>
+  <script src="{% static 'js/componentes.js' %}"></script>
 {% endblock javascript %}
