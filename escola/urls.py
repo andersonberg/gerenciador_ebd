@@ -19,6 +19,7 @@ urlpatterns = [
 
     url(r'^classes/$', views.ClasseViewHTML.as_view(), name='classes'),
     url(r'^departamentos/$', views.DepartamentoViewHTML.as_view(), name='departamentos'),
+    url(r'^professores/$', views.ProfessorViewHTML.as_view(), name='professores'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
