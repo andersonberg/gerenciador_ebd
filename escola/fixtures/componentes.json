@@ -3,6 +3,7 @@
         "fields": {
             "nome": "Alex Fernandes",
             "cartao_membro": 123,
+            "classe": 1,
             "tipo": "aluno",
             "sexo": "masculino",
             "nascimento": "1995-02-22",
@@ -25,7 +26,8 @@
         "fields": {
             "nome": "José da Silva",
             "cartao_membro": 345,
-            "tipo": "coordenador",
+            "classe": 1,
+            "tipo": "professor",
             "sexo": "masculino",
             "nascimento": "1975-03-01",
             "logradouro": "Rua A",

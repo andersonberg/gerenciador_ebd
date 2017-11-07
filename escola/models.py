@@ -31,7 +31,7 @@ class Classe(models.Model):
     faixa = models.CharField(choices=FAIXA_TYPES, max_length=50, default=ADULTO)
 
     class Meta:
-        ordering = ('numero', 'departamento',)
+        ordering = ('numero', 'departamento', 'faixa')
 
 
 class Departamento(models.Model):
