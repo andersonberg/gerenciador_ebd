@@ -30,6 +30,10 @@ class Classe(models.Model):
     departamento = models.ForeignKey(to='Departamento', blank=True, null=True)
     faixa = models.CharField(choices=FAIXA_TYPES, max_length=50, default=ADULTO)
 
+    @property
+    def professor(self):
+        return self.componente_set.get(tipo=Componente.PROFESSOR)
+
     class Meta:
         ordering = ('numero', 'departamento', 'faixa')
 
