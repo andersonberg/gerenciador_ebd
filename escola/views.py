@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.detail import DetailView
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.renderers import TemplateHTMLRenderer
@@ -126,3 +127,7 @@ class DepartamentoViewHTML(APIView):
         queryset = Departamento.objects.all()
         return Response({'departamentos': queryset})
 
+
+class ClasseDetail(DetailView):
+    model = Classe
+    template_name='pages/classe-details.html'

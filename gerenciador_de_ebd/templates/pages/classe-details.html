@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static i18n %}
+{% block css %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="right_col" role="main">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+            <h2>Classe</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br />
+          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+            
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="numero-classe">Numero <span class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="numero-classe" required="required" class="form-control col-md-7 col-xs-12" value="{{ classe.numero }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Departamento</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <select class="select2_single form-control" tabindex="-1" id="classe-departamento">
+                  <option></option>
+                  <option value="AK">Alaska</option>
+                  <option value="HI">Hawaii</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Faixa</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <select class="select2_single form-control" tabindex="-1" id="classe-faixa">
+                  <option></option>
+                  <option value="AK">Alaska</option>
+                  <option value="HI">Hawaii</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="ln_solid"></div>
+            <h4>Professores</h4>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Professor:</label>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ classe.professor.nome }}</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Adjuntos</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" id="adjunto-classe" class="form-control col-md-7 col-xs-12">
+                </div>
+              </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button class="btn btn-primary" type="button">Cancelar</button>
+                <button type="submit" class="btn btn-success">Salvar</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
