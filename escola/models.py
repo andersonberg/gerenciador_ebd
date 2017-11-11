@@ -34,6 +34,10 @@ class Classe(models.Model):
     def professor(self):
         return self.componente_set.get(tipo=Componente.PROFESSOR)
 
+    @property
+    def adjuntos(self):
+        return self.componente_set.filter(tipo=Componente.ADJUNTO)
+
     class Meta:
         ordering = ('numero', 'departamento', 'faixa')
 
@@ -47,6 +51,12 @@ class Departamento(models.Model):
 
     class Meta:
         ordering = ('nome',)
+
+    def __unicode__(self):
+        return '%s' % self.nome
+
+    def __str__(self):
+        return '%s' % self.nome
 
 
 class Componente(models.Model):

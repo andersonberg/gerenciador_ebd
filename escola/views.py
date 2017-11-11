@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.detail import DetailView
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -6,6 +6,7 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from escola.models import Classe, Componente, Departamento
 from escola.serializers import ClasseSerializer, ComponenteSerializer, DepartamentoSerializer
+from escola.forms import ClasseForm
 
 
 class ClasseList(generics.ListAPIView):
@@ -128,6 +129,20 @@ class DepartamentoViewHTML(APIView):
         return Response({'departamentos': queryset})
 
 
-class ClasseDetail(DetailView):
-    model = Classe
+class ClasseDetail(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    # model = Classe
     template_name='pages/classe-details.html'
+
+    def get(self, request, pk):
+        classe = get_object_or_404(Classe, pk=pk)
+        serializer = ClasseSerializer(classe)
+        return Response({'serializer': serializer, 'classe': classe})
+
+    def post(self, request, pk):
+        classe = get_object_or_404(Classe, pk=pk)
+        serializer = ClasseSerializer(classe, data=request.data)
+        if not serializer.is_valid():
+            return Response({'serializer': serializer, 'classe': classe})
+        serializer.save()
+        return redirect('classes')

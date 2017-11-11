@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static i18n %}
+{% load rest_framework %}
 {% block css %}
 {{ block.super }}
 {% endblock %}
@@ -16,35 +17,8 @@
         </div>
         <div class="x_content">
           <br />
-          <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-            
-            <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="numero-classe">Numero <span class="required">*</span>
-              </label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="numero-classe" required="required" class="form-control col-md-7 col-xs-12" value="{{ classe.numero }}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12">Departamento</label>
-              <div class="col-md-9 col-sm-9 col-xs-12">
-                <select class="select2_single form-control" tabindex="-1" id="classe-departamento">
-                  <option></option>
-                  <option value="AK">Alaska</option>
-                  <option value="HI">Hawaii</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12">Faixa</label>
-              <div class="col-md-9 col-sm-9 col-xs-12">
-                <select class="select2_single form-control" tabindex="-1" id="classe-faixa">
-                  <option></option>
-                  <option value="AK">Alaska</option>
-                  <option value="HI">Hawaii</option>
-                </select>
-              </div>
-            </div>
+          <form method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+              {% render_form serializer %}
             
             <div class="ln_solid"></div>
             <h4>Professores</h4>
@@ -53,14 +27,14 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ classe.professor.nome }}</label>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Adjuntos</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="adjunto-classe" class="form-control col-md-7 col-xs-12">
-                </div>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Adjuntos:</label>
+                {% for adjunto in classe.adjuntos %}
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ adjunto.nome }}{% if not forloop.last %},{% endif %}</label>
+                {% endfor %}
               </div>
             <div class="ln_solid"></div>
             <div class="form-group">
-              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                 <button class="btn btn-primary" type="button">Cancelar</button>
                 <button type="submit" class="btn btn-success">Salvar</button>
               </div>
