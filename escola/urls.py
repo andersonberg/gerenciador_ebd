@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^api/departamentos/create/$', views.DepartamentoCreate.as_view()),
 
     url(r'^classes/$', views.ClasseViewHTML.as_view(), name='classes'),
-    url(r'^classes/(?P<pk>[0-9]+)/$', views.ClasseDetail.as_view()),
+    url(r'^classes/(?P<pk>[0-9]+)/$', views.ClasseDetail.as_view(), name='classe-detail'),
     url(r'^departamentos/$', views.DepartamentoViewHTML.as_view(), name='departamentos'),
     url(r'^professores/$', views.ProfessorViewHTML.as_view(), name='professores'),
     url(r'^alunos/$', views.AlunoViewHTML.as_view(), name='alunos'),

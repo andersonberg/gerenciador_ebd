@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.detail import DetailView
 from rest_framework import generics
 from rest_framework.views import APIView
