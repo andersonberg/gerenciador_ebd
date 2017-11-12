@@ -38,6 +38,10 @@ class Classe(models.Model):
     def adjuntos(self):
         return self.componente_set.filter(tipo=Componente.ADJUNTO)
 
+    @property
+    def qtd_alunos(self):
+        return len(self.componente_set.filter(tipo=Componente.ALUNO))
+
     class Meta:
         ordering = ('numero', 'departamento', 'faixa')
 

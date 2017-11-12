@@ -131,7 +131,6 @@ class DepartamentoViewHTML(APIView):
 
 class ClasseDetail(APIView):
     renderer_classes = [TemplateHTMLRenderer]
-    # model = Classe
     template_name='pages/classe-details.html'
 
     def get(self, request, pk):

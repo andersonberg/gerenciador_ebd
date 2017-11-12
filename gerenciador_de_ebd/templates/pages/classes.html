@@ -25,6 +25,7 @@
                 <th>Departamento</th>
                 <th>Faixa</th>
                 <th>Professor</th>
+                <th>Total de Alunos</th>
               </tr>
             </thead>
 
@@ -36,6 +37,7 @@
                   <td>{{ classe.departamento.nome }}</td>
                   <td>{{ classe.get_faixa_display }}</td>
                   <td>{{ classe.professor.nome }}</td>
+                  <td>{{ classe.qtd_alunos }}</td>
                 </tr>
               {% endfor %}
             </tbody>
