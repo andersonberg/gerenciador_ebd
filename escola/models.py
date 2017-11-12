@@ -42,6 +42,9 @@ class Classe(models.Model):
     def qtd_alunos(self):
         return len(self.componente_set.filter(tipo=Componente.ALUNO))
 
+    def __str__(self):
+        return self.numero
+
     class Meta:
         ordering = ('numero', 'departamento', 'faixa')
 
@@ -105,21 +108,21 @@ class Componente(models.Model):
 
     cartao_membro = models.IntegerField()
     classe = models.ForeignKey(to='Classe', blank=True, null=True)
-    tipo = models.CharField(_('Type'), choices=COMPONENT_TYPES, default=ALUNO, max_length=50)
+    tipo = models.CharField(_('Função'), choices=COMPONENT_TYPES, default=ALUNO, max_length=50)
     nome = models.CharField(max_length=100)
     sexo = models.CharField(choices=SEXO_TYPES, max_length=15, blank=True, null=True)
     nascimento = models.DateField(blank=True, null=True)
     logradouro = models.CharField(max_length=100, blank=True, null=True)
-    numero_end = models.IntegerField(blank=True, null=True)
-    complemento_end = models.CharField(max_length=50, blank=True, null=True)
+    numero_end = models.IntegerField(_('Número'), blank=True, null=True)
+    complemento_end = models.CharField(_('Complemento'), max_length=50, blank=True, null=True)
     bairro = models.CharField(max_length=100, blank=True, null=True)
     cep = models.CharField(max_length=50, blank=True, null=True)
     cidade = models.CharField(max_length=100, blank=True, null=True)
-    uf = models.CharField(max_length=50, blank=True, null=True)
+    uf = models.CharField(_('UF'), max_length=50, blank=True, null=True)
     telefone = models.CharField(max_length=50, blank=True, null=True)
     celular = models.CharField(max_length=50, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
-    estado_civil = models.CharField(max_length=50, blank=True, null=True)
+    estado_civil = models.CharField(_('Estado Civil'), max_length=50, blank=True, null=True)
 
     class Meta:
         ordering = ('nome',)
