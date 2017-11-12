@@ -145,3 +145,32 @@ class ClasseDetail(APIView):
             return Response({'serializer': serializer, 'classe': classe})
         serializer.save()
         return redirect('classes')
+
+
+class ComponenteDetail(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name='pages/componente-details.html'
+
+    def get(self, request, pk):
+        componente = get_object_or_404(Componente, pk=pk)
+        serializer = ComponenteSerializer(componente)
+
+        url_redirect = 'classes'
+        if componente.tipo in ['professor', 'adjunto']:
+            url_redirect = 'professores'
+        elif componente.tipo == 'aluno':
+            url_redirect = 'alunos'
+        return Response({'serializer': serializer, 'componente': componente, 'url_redirect': url_redirect})
+
+    def post(self, request, pk):
+        componente = get_object_or_404(Componente, pk=pk)
+        serializer = ComponenteSerializer(componente, data=request.data)
+        if not serializer.is_valid():
+            return Response({'serializer': serializer, 'componente': componente})
+        serializer.save()
+        if componente.tipo in ['professor', 'adjunto']:
+            return redirect('professores')
+        elif componente.tipo == 'aluno':
+            return redirect('alunos')
+        else:
+            return redirect('classes')

@@ -20,6 +20,7 @@
           <table id="professores-datatable" class="table table-striped table-bordered">
             <thead>
               <tr>
+                <th></th>
                 <th>Nome</th>
                 <th>Classe</th>
                 <th>Função</th>
@@ -29,6 +30,7 @@
             <tbody>
               {% for componente in componentes %}
                 <tr>
+                  <td><a type="button" class="btn btn-default" href="{% url 'componente-detail' pk=componente.pk %}" id="componente-details">Detalhes</a></td>
                   <td>{{componente.nome}}</td>
                   <td>{{componente.classe.numero}}</td>
                   <td>{{componente.get_tipo_display}}</td>
