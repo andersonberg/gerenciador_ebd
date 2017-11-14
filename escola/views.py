@@ -4,9 +4,9 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
+from rest_framework.reverse import reverse
 from escola.models import Classe, Componente, Departamento
 from escola.serializers import ClasseSerializer, ComponenteSerializer, DepartamentoSerializer
-from escola.forms import ClasseForm
 
 
 class ClasseList(generics.ListAPIView):
@@ -174,3 +174,23 @@ class ComponenteDetail(APIView):
             return redirect('alunos')
         else:
             return redirect('classes')
+
+
+class ComponenteNew(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name='pages/componente-new.html'
+    # queryset = Componente.objects.all()
+    # serializer_class = ComponenteSerializer
+
+    def get(self, request, *args, **kwargs):
+        # componente = Componente()
+        serializer = ComponenteSerializer()
+        return Response({'serializer': serializer, 'url': reverse('componente_new')})
+
+    def post(self, request, *args, **kwargs):
+        componente = Componente()
+        serializer = ComponenteSerializer(componente, data=request.data)
+        if not serializer.is_valid():
+            return Response({'serializer': serializer, 'componente': componente})
+        serializer.save()
+        return redirect('classes')

@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^professores/$', views.ProfessorViewHTML.as_view(), name='professores'),
     url(r'^alunos/$', views.AlunoViewHTML.as_view(), name='alunos'),
     url(r'^componentes/(?P<pk>[0-9]+)/$', views.ComponenteDetail.as_view(), name='componente-detail'),
+    url(r'^componentes/novo/$', views.ComponenteDetail.as_view(), name='componente_new'),
+    # url(r'^componentes/novo/(?P<pk>[0-9]*)/$', views.ComponenteNew.as_view(), name='componente-new'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
