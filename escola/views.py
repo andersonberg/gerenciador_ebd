@@ -179,8 +179,6 @@ class ComponenteDetail(APIView):
 class ComponenteNew(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name='pages/componente-new.html'
-    queryset = Componente.objects.all()
-    serializer_class = ComponenteSerializer
 
     def get(self, request, *args, **kwargs):
         serializer = ComponenteSerializer()
@@ -191,5 +189,22 @@ class ComponenteNew(APIView):
         serializer = ComponenteSerializer(componente, data=request.data)
         if not serializer.is_valid():
             return Response({'serializer': serializer, 'componente': componente})
+        serializer.save()
+        return redirect('home')
+
+
+class ClasseNew(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name='pages/classe-new.html'
+
+    def get(self, request, *args, **kwargs):
+        serializer = ClasseSerializer()
+        return Response({'serializer': serializer, 'url': reverse('classe_new'), 'url_redirect': 'home'})
+
+    def post(self, request, *args, **kwargs):
+        classe = Classe()
+        serializer = ClasseSerializer(classe, data=request.data)
+        if not serializer.is_valid():
+            return Response({'serializer': serializer, 'classe': classe})
         serializer.save()
         return redirect('home')
