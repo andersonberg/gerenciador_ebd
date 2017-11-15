@@ -5,8 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from escola.models import Classe, Componente, Departamento
-from escola.serializers import ClasseSerializer, ComponenteSerializer, DepartamentoSerializer
+from escola.models import Classe, Componente, Departamento, Evento
+from escola.serializers import ClasseSerializer, ComponenteSerializer, DepartamentoSerializer, EventoSerializer
 
 
 class ClasseList(generics.ListAPIView):
@@ -208,3 +208,43 @@ class ClasseNew(APIView):
             return Response({'serializer': serializer, 'classe': classe})
         serializer.save()
         return redirect('home')
+
+
+class EventoList(generics.ListAPIView):
+    """
+    Lista todos os eventos na EBD.
+    """
+
+    queryset = Evento.objects.all()
+    serializer_class = EventoSerializer
+    paginate_by = 10
+
+
+class EventoViewHTML(APIView):
+    """
+    View para renderizar template
+    """
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'pages/eventos.html'
+
+    def get(self, request):
+        queryset = Evento.objects.all()
+        return Response({'eventos': queryset})
+
+
+class EventoView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Evento view para read-write-delete endpoints.
+    """
+
+    queryset = Evento.objects.all()
+    serializer_class = EventoSerializer
+
+
+class EventoCreate(generics.CreateAPIView):
+    """
+    Evento view for create endpoint.
+    """
+
+    queryset = Evento.objects.all()
+    serializer_class = EventoSerializer

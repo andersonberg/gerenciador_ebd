@@ -126,3 +126,18 @@ class Componente(models.Model):
 
     class Meta:
         ordering = ('nome',)
+
+
+class Evento(models.Model):
+    '''
+    Representa um evento especial da escola
+    '''
+    titulo = models.CharField(max_length=100)
+    data_evento = models.DateField()
+
+
+    class Meta:
+        ordering = ('titulo', 'data_evento')
+
+    def __str__(self):
+        return '%s' % self.titulo
