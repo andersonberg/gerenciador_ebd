@@ -199,7 +199,7 @@ class ClasseNew(APIView):
 
     def get(self, request, *args, **kwargs):
         serializer = ClasseSerializer()
-        return Response({'serializer': serializer, 'url': reverse('classe_new'), 'url_redirect': 'home'})
+        return Response({'serializer': serializer, 'url': reverse('classe_new'), 'url_redirect': 'classes'})
 
     def post(self, request, *args, **kwargs):
         classe = Classe()
