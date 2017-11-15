@@ -179,13 +179,12 @@ class ComponenteDetail(APIView):
 class ComponenteNew(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name='pages/componente-new.html'
-    # queryset = Componente.objects.all()
-    # serializer_class = ComponenteSerializer
+    queryset = Componente.objects.all()
+    serializer_class = ComponenteSerializer
 
     def get(self, request, *args, **kwargs):
-        # componente = Componente()
         serializer = ComponenteSerializer()
-        return Response({'serializer': serializer, 'url': reverse('componente_new')})
+        return Response({'serializer': serializer, 'url': reverse('componente_new'), 'url_redirect': 'home'})
 
     def post(self, request, *args, **kwargs):
         componente = Componente()
@@ -193,4 +192,4 @@ class ComponenteNew(APIView):
         if not serializer.is_valid():
             return Response({'serializer': serializer, 'componente': componente})
         serializer.save()
-        return redirect('classes')
+        return redirect('home')
