@@ -23,5 +23,29 @@
         },
         "model": "escola.classe",
         "pk": 3
+    },
+    {
+        "fields": {
+            "numero": "4",
+            "faixa": "adulto"
+        },
+        "model": "escola.classe",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "numero": "5",
+            "faixa": "adulto"
+        },
+        "model": "escola.classe",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "numero": "6",
+            "faixa": "adulto"
+        },
+        "model": "escola.classe",
+        "pk": 6
     }
 ]

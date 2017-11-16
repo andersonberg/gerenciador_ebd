@@ -1,8 +1,7 @@
 [
     {
         "fields": {
-            "nome": "Adolescentes",
-            "coordenador": 2
+            "nome": "Adolescentes"
         },
         "model": "escola.departamento",
         "pk": 1
