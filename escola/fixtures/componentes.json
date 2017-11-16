@@ -7,8 +7,7 @@
             "tipo": "aluno",
             "sexo": "masculino",
             "nascimento": "1995-02-22",
-            "logradouro": "Rua E",
-            "numero_end": 1393,
+            "endereco": "Rua E, 1393",
             "complemento_end": "",
             "bairro": "Bairro",
             "cep": "88132-820",
@@ -19,8 +18,7 @@
             "email": "alex@exemplo.com",
             "estado_civil": "solteiro"
         },
-        "model": "escola.componente",
-        "pk": 1
+        "model": "escola.componente"
     },
     {
         "fields": {
@@ -30,8 +28,7 @@
             "tipo": "professor",
             "sexo": "masculino",
             "nascimento": "1975-03-01",
-            "logradouro": "Rua A",
-            "numero_end": 560,
+            "endereco": "Rua A, 560",
             "complemento_end": "",
             "bairro": "Bairro",
             "cep": "88132-230",
@@ -42,7 +39,69 @@
             "email": "jose@exemplo.com",
             "estado_civil": "casado"
         },
-        "model": "escola.componente",
-        "pk": 2
+        "model": "escola.componente"
+    },
+    {
+        "fields": {
+            "nome": "Victor Rocha",
+            "cartao_membro": 2356,
+            "classe": 4,
+            "tipo": "professor",
+            "sexo": "masculino",
+            "nascimento": "1952-06-25",
+            "endereco": "Rua Resende Costa, 561",
+            "complemento_end": "",
+            "bairro": "Bairro",
+            "cep": "31210-160",
+            "cidade": "Recife",
+            "uf": "PE",
+            "telefone": "",
+            "celular": "(81) 97948-7292",
+            "email": "victor@exemplo.com",
+            "estado_civil": "casado"
+        },
+        "model": "escola.componente"
+    },
+    {
+        "fields": {
+            "nome": "Carlos Cunha Ferreira",
+            "cartao_membro": 5633,
+            "classe": 4,
+            "tipo": "aluno",
+            "sexo": "masculino",
+            "nascimento": "1981-02-01",
+            "endereco": "Rua Guimarães Rosas, 1576",
+            "complemento_end": "",
+            "bairro": "Bairro",
+            "cep": "60545-120",
+            "cidade": "Recife",
+            "uf": "PE",
+            "telefone": "",
+            "celular": "(81) 94768-3155",
+            "email": "carlosc@exemplo.com",
+            "estado_civil": "casado"
+        },
+        "model": "escola.componente"
+    },
+    {
+        "fields": {
+            "nome": "Leila Lima Pereira",
+            "cartao_membro": 8123,
+            "classe": 5,
+            "tipo": "professor",
+            "sexo": "feminino",
+            "nascimento": "1974-01-31",
+            "endereco": "Rua Professor João Fioravante, 342",
+            "complemento_end": "",
+            "bairro": "Bairro",
+            "cep": "13403-014",
+            "cidade": "Recife",
+            "uf": "PE",
+            "telefone": "",
+            "celular": "(81) 99519-6262",
+            "email": "leilap@exemplo.com",
+            "estado_civil": "casado"
+        },
+        "model": "escola.componente"
     }
 ]
