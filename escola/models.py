@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
@@ -125,3 +126,38 @@ class Componente(models.Model):
 
     class Meta:
         ordering = ('nome',)
+
+
+class Caderneta(models.Model):
+    NORMAL = 'normal'
+    MISSIONARIA = 'manha-missionaria'
+    UNICA = 'classe-unica'
+    ANIMADA = 'escola-animada'
+    
+    ESCOLA_TYPES = (
+        (NORMAL, _('Normal')),
+        (MISSIONARIA, _('Manhã Missionária')),
+        (UNICA, _('Classe única')),
+        (ANIMADA, _('Escola Animada'))
+    )
+
+    classe = models.ForeignKey(to='Classe', related_name='classe', on_delete=models.CASCADE)
+    tipo = models.CharField(_('Tipo'), choices=ESCOLA_TYPES, default=NORMAL, max_length=50)
+    data = models.DateField(default=date.today)
+    presentes = models.IntegerField(blank=True, null=True, default=0)
+    visitantes = models.IntegerField(blank=True, null=True, default=0)
+    matriculados = models.IntegerField(blank=True, null=True, default=0)
+    biblias = models.IntegerField(blank=True, null=True, default=0)
+    professor = models.IntegerField(blank=True, null=True, default=0)
+    adjuntos = models.IntegerField(blank=True, null=True, default=0)
+
+    @property
+    def frequencia(self):
+        return (self.presentes / self.matriculados) * 100
+
+    @property
+    def atendimento(self):
+        return self.presentes + self.visitantes + self.professor + self.adjuntos
+
+    class Meta:
+        ordering = ('data',)
