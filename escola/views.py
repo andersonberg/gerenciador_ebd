@@ -273,3 +273,37 @@ class CadernetaGeralCreate(generics.CreateAPIView):
 
     queryset = CadernetaGeral.objects.all()
     serializer_class = CadernetaGeralSerializer
+
+
+class CadernetaNew(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name='pages/caderneta-new-home.html'
+
+    def get(self, request, *args, **kwargs):
+        serializer = CadernetaSerializer
+        return Response({'serializer': serializer, 'url': reverse('caderneta_new'), 'url_redirect': 'home'})
+
+    def post(self, request, *args, **kwargs):
+        caderneta = Caderneta()
+        serializer = CadernetaSerializer(caderneta, data=request.data)
+        if not serializer.is_valid():
+            return Response({'serializer': serializer, 'caderneta': caderneta})
+        serializer.save()
+        return redirect('home')
+
+
+class DomingoNew(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name='pages/domingo-new.html'
+
+    def get(self, request, *args, **kwargs):
+        serializer = CadernetaGeralSerializer()
+        return Response({'serializer': serializer, 'url': reverse('domingo_new'), 'url_redirect': 'home'})
+
+    def post(self, request, *args, **kwargs):
+        domingo = CadernetaGeral()
+        serializer = CadernetaGeralSerializer(domingo, data=request.data)
+        if not serializer.is_valid():
+            return Response({'serializer': serializer, 'domingo': domingo})
+        serializer.save()
+        return redirect('home')

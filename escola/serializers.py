@@ -26,7 +26,7 @@ class ComponenteSerializer(serializers.ModelSerializer):
 class CadernetaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Caderneta
-        fields = ('__all__')
+        fields = ('classe', 'domingo', 'presentes', 'visitantes', 'matriculados', 'biblias', 'professor', 'adjuntos')
 
 
 class CadernetaGeralSerializer(serializers.ModelSerializer):

@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
@@ -144,11 +144,15 @@ class CadernetaGeral(models.Model):
     tipo = models.CharField(_('Tipo'), choices=ESCOLA_TYPES, default=NORMAL, max_length=50)
     data = models.DateField(default=date.today)
 
+    def __str__(self):
+        data_str = self.data.strftime("%d/%m/%Y")
+        return data_str
+
 
 class Caderneta(models.Model):
 
     classe = models.ForeignKey(to='Classe', related_name='classe', on_delete=models.CASCADE)
-    caderneta_geral = models.ForeignKey(to='CadernetaGeral', related_name='caderneta_geral')
+    domingo = models.ForeignKey(to='CadernetaGeral', related_name='caderneta_geral')
     presentes = models.IntegerField(blank=True, null=True, default=0)
     visitantes = models.IntegerField(blank=True, null=True, default=0)
     matriculados = models.IntegerField(blank=True, null=True, default=0)

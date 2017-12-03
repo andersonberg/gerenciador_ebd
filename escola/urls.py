@@ -5,6 +5,7 @@ from escola import views
 
 
 urlpatterns = [
+    # API urls
     url(r'^api/classes/$',views.ClasseList.as_view()),
     url(r'^api/classes/(?P<pk>[0-9]+)/$', views.ClasseView.as_view()),
     url(r'^api/classes/create/$', views.ClasseCreate.as_view()),
@@ -25,8 +26,10 @@ urlpatterns = [
     url(r'^api/domingos/(?P<pk>[0-9]+)/$', views.CadernetaGeralView.as_view()),
     url(r'^api/domingos/create/$', views.CadernetaGeralCreate.as_view()),
 
+    # Web urls
     url(r'^classes/$', views.ClasseViewHTML.as_view(), name='classes'),
     url(r'^classes/(?P<pk>[0-9]+)/$', views.ClasseDetail.as_view(), name='classe-detail'),
+    url(r'^classes/novo/$', views.ClasseNew.as_view(), name='classe_new'),
 
     url(r'^departamentos/$', views.DepartamentoViewHTML.as_view(), name='departamentos'),
 
@@ -34,8 +37,10 @@ urlpatterns = [
     url(r'^alunos/$', views.AlunoViewHTML.as_view(), name='alunos'),
     url(r'^componentes/(?P<pk>[0-9]+)/$', views.ComponenteDetail.as_view(), name='componente-detail'),
     url(r'^componentes/novo/$', views.ComponenteNew.as_view(), name='componente_new'),
-    url(r'^classes/novo/$', views.ClasseNew.as_view(), name='classe_new'),
+    
     url(r'^cadernetas/$', views.CadernetaViewHTML.as_view(), name='cadernetas'),
+    url(r'^domingos/novo/$', views.DomingoNew.as_view(), name='domingo_new'),
+    url(r'^cadernetas/novo/$', views.CadernetaNew.as_view(), name='caderneta_new'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
