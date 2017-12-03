@@ -17,6 +17,10 @@ urlpatterns = [
     url(r'^api/departamentos/(?P<pk>[0-9]+)/$', views.DepartamentoView.as_view()),
     url(r'^api/departamentos/create/$', views.DepartamentoCreate.as_view()),
 
+    url(r'^api/cadernetas/$',views.CadernetaList.as_view()),
+    url(r'^api/cadernetas/(?P<pk>[0-9]+)/$', views.CadernetaView.as_view()),
+    url(r'^api/cadernetas/create/$', views.CadernetaCreate.as_view()),
+
     url(r'^classes/$', views.ClasseViewHTML.as_view(), name='classes'),
     url(r'^classes/(?P<pk>[0-9]+)/$', views.ClasseDetail.as_view(), name='classe-detail'),
 
@@ -27,6 +31,7 @@ urlpatterns = [
     url(r'^componentes/(?P<pk>[0-9]+)/$', views.ComponenteDetail.as_view(), name='componente-detail'),
     url(r'^componentes/novo/$', views.ComponenteNew.as_view(), name='componente_new'),
     url(r'^classes/novo/$', views.ClasseNew.as_view(), name='classe_new'),
+    url(r'^cadernetas/$', views.CadernetaViewHTML.as_view(), name='cadernetas'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
