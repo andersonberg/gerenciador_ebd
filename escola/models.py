@@ -128,7 +128,7 @@ class Componente(models.Model):
         ordering = ('nome',)
 
 
-class Caderneta(models.Model):
+class CadernetaGeral(models.Model):
     NORMAL = 'normal'
     MISSIONARIA = 'manha-missionaria'
     UNICA = 'classe-unica'
@@ -141,9 +141,14 @@ class Caderneta(models.Model):
         (ANIMADA, _('Escola Animada'))
     )
 
-    classe = models.ForeignKey(to='Classe', related_name='classe', on_delete=models.CASCADE)
     tipo = models.CharField(_('Tipo'), choices=ESCOLA_TYPES, default=NORMAL, max_length=50)
     data = models.DateField(default=date.today)
+
+
+class Caderneta(models.Model):
+
+    classe = models.ForeignKey(to='Classe', related_name='classe', on_delete=models.CASCADE)
+    caderneta_geral = models.ForeignKey(to='CadernetaGeral', related_name='caderneta_geral')
     presentes = models.IntegerField(blank=True, null=True, default=0)
     visitantes = models.IntegerField(blank=True, null=True, default=0)
     matriculados = models.IntegerField(blank=True, null=True, default=0)
@@ -160,4 +165,4 @@ class Caderneta(models.Model):
         return self.presentes + self.visitantes + self.professor + self.adjuntos
 
     class Meta:
-        ordering = ('data',)
+        ordering = ('classe',)

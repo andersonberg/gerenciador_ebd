@@ -21,6 +21,10 @@ urlpatterns = [
     url(r'^api/cadernetas/(?P<pk>[0-9]+)/$', views.CadernetaView.as_view()),
     url(r'^api/cadernetas/create/$', views.CadernetaCreate.as_view()),
 
+    url(r'^api/domingos/$',views.CadernetaGeralList.as_view()),
+    url(r'^api/domingos/(?P<pk>[0-9]+)/$', views.CadernetaGeralView.as_view()),
+    url(r'^api/domingos/create/$', views.CadernetaGeralCreate.as_view()),
+
     url(r'^classes/$', views.ClasseViewHTML.as_view(), name='classes'),
     url(r'^classes/(?P<pk>[0-9]+)/$', views.ClasseDetail.as_view(), name='classe-detail'),
 

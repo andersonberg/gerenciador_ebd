@@ -5,8 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from escola.models import Classe, Componente, Departamento, Caderneta
-from escola.serializers import ClasseSerializer, ComponenteSerializer, DepartamentoSerializer, CadernetaSerializer
+from escola.models import Classe, Componente, Departamento, Caderneta, CadernetaGeral
+from escola.serializers import ClasseSerializer, ComponenteSerializer, DepartamentoSerializer, CadernetaSerializer, CadernetaGeralSerializer
 
 
 class ClasseList(generics.ListAPIView):
@@ -245,3 +245,31 @@ class CadernetaViewHTML(APIView):
     def get(self, request):
         queryset = Caderneta.objects.all()
         return Response({'cadernetas': queryset})
+
+
+class CadernetaGeralList(generics.ListAPIView):
+    """
+    List all Cadernetas in EBD.
+    """
+
+    queryset = CadernetaGeral.objects.all()
+    serializer_class = CadernetaGeralSerializer
+    paginate_by = 10
+
+
+class CadernetaGeralView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Caderneta view for read-write-delete endpoints.
+    """
+
+    queryset = CadernetaGeral.objects.all()
+    serializer_class = CadernetaGeralSerializer
+
+
+class CadernetaGeralCreate(generics.CreateAPIView):
+    """
+    Caderneta view for create endpoint.
+    """
+
+    queryset = CadernetaGeral.objects.all()
+    serializer_class = CadernetaGeralSerializer

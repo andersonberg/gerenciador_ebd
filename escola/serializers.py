@@ -2,7 +2,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 
 from rest_framework import serializers
-from escola.models import Classe, Componente, Departamento, Caderneta
+from escola.models import Classe, Componente, Departamento, Caderneta, CadernetaGeral
 
 
 class DepartamentoSerializer(serializers.ModelSerializer):
@@ -26,4 +26,10 @@ class ComponenteSerializer(serializers.ModelSerializer):
 class CadernetaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Caderneta
+        fields = ('__all__')
+
+
+class CadernetaGeralSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CadernetaGeral
         fields = ('__all__')
