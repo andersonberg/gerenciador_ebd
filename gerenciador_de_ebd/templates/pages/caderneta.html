@@ -38,7 +38,7 @@
             </thead>
 
             <tbody>
-              {% for classe in classes %}
+              {% for caderneta in cadernetas %}
                 <tr>
                   <td>{{ caderneta.classe.numero }}</td>
                   <td>{{ caderneta.presentes }}</td>
@@ -49,6 +49,14 @@
                   <td>{{ caderneta.adjuntos }}</td>
                   <td>{{ caderneta.atendimento }}</td>
                   <td>{{ caderneta.frequencia }}</td>
+                  <td>
+                    <a type="button" class="btn btn-default" href="" id="editar-caderneta">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a type="button" class="btn btn-danger" href="" id="excluir-caderneta">
+                        <i class="fa fa-eraser"></i>
+                    </a>
+                  </td>
                 </tr>
               {% endfor %}
             </tbody>
