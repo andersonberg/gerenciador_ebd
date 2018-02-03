@@ -129,6 +129,23 @@ class DepartamentoViewHTML(APIView):
         return Response({'departamentos': queryset})
 
 
+class ClasseNew(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name='pages/classe-new.html'
+
+    def get(self, request, *args, **kwargs):
+        serializer = ClasseSerializer()
+        return Response({'serializer': serializer, 'url': reverse('classe_new'), 'url_redirect': 'classes'})
+
+    def post(self, request, *args, **kwargs):
+        classe = Classe()
+        serializer = ClasseSerializer(classe, data=request.data)
+        if not serializer.is_valid():
+            return Response({'serializer': serializer, 'classe': classe})
+        serializer.save()
+        return redirect('home')
+
+
 class ClasseDetail(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name='pages/classe-details.html'
@@ -193,23 +210,6 @@ class ComponenteNew(APIView):
         return redirect('home')
 
 
-class ClasseNew(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name='pages/classe-new.html'
-
-    def get(self, request, *args, **kwargs):
-        serializer = ClasseSerializer()
-        return Response({'serializer': serializer, 'url': reverse('classe_new'), 'url_redirect': 'classes'})
-
-    def post(self, request, *args, **kwargs):
-        classe = Classe()
-        serializer = ClasseSerializer(classe, data=request.data)
-        if not serializer.is_valid():
-            return Response({'serializer': serializer, 'classe': classe})
-        serializer.save()
-        return redirect('home')
-
-
 class CadernetaList(generics.ListAPIView):
     """
     List all Cadernetas in EBD.
@@ -244,7 +244,8 @@ class CadernetaViewHTML(APIView):
 
     def get(self, request):
         queryset = Caderneta.objects.all()
-        return Response({'cadernetas': queryset})
+        domingos = CadernetaGeral.objects.all()
+        return Response({'cadernetas': queryset, 'domingos': domingos})
 
 
 class CadernetaGeralList(generics.ListAPIView):
@@ -281,7 +282,7 @@ class CadernetaNew(APIView):
 
     def get(self, request, *args, **kwargs):
         serializer = CadernetaSerializer
-        return Response({'serializer': serializer, 'url': reverse('caderneta_new'), 'url_redirect': 'home'})
+        return Response({'serializer': serializer, 'url': reverse('caderneta_new'), 'url_redirect': 'cadernetas'})
 
     def post(self, request, *args, **kwargs):
         caderneta = Caderneta()
@@ -292,13 +293,31 @@ class CadernetaNew(APIView):
         return redirect('home')
 
 
+class CadernetaDetail(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name='pages/caderneta-details.html'
+
+    def get(self, request, pk):
+        caderneta = get_object_or_404(Caderneta, pk=pk)
+        serializer = CadernetaSerializer(caderneta)
+        return Response({'serializer': serializer, 'caderneta': caderneta, 'url_redirect': 'cadernetas'})
+
+    def post(self, request, pk):
+        caderneta = get_object_or_404(Caderneta, pk=pk)
+        serializer = CadernetaSerializer(caderneta, data=request.data)
+        if not serializer.is_valid():
+            return Response({'serializer': serializer, 'caderneta': caderneta})
+        serializer.save()
+        return redirect('cadernetas')
+
+
 class DomingoNew(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name='pages/domingo-new.html'
 
     def get(self, request, *args, **kwargs):
         serializer = CadernetaGeralSerializer()
-        return Response({'serializer': serializer, 'url': reverse('domingo_new'), 'url_redirect': 'home'})
+        return Response({'serializer': serializer, 'url': reverse('domingo_new'), 'url_redirect': 'cadernetas'})
 
     def post(self, request, *args, **kwargs):
         domingo = CadernetaGeral()
@@ -306,4 +325,4 @@ class DomingoNew(APIView):
         if not serializer.is_valid():
             return Response({'serializer': serializer, 'domingo': domingo})
         serializer.save()
-        return redirect('home')
+        return redirect('cadernetas')

@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^cadernetas/$', views.CadernetaViewHTML.as_view(), name='cadernetas'),
     url(r'^domingos/novo/$', views.DomingoNew.as_view(), name='domingo_new'),
     url(r'^cadernetas/novo/$', views.CadernetaNew.as_view(), name='caderneta_new'),
+    url(r'^cadernetas/(?P<pk>[0-9]+)/$', views.CadernetaDetail.as_view(), name='caderneta_details'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
